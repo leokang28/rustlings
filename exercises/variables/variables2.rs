@@ -4,7 +4,12 @@
 // I AM NOT DONE
 
 fn main() {
-    let x;
+    let x = "abc";
+    let x:u32 = match x.parse() {
+        Ok(num) => num,
+        Err(_) => 1,
+    };
+    println!("{}", x);
     if x == 10 {
         println!("Ten!");
     } else {

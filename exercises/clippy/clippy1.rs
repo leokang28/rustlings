@@ -11,7 +11,16 @@
 fn main() {
     let x = 1.2331f64;
     let y = 1.2332f64;
-    if y != x {
+    
+    // if y != x {
+    //     println!("Success!");
+    // }
+
+    let error = f64::EPSILON; 
+    // Use an epsilon for comparison
+    // Or, if Rust <= 1.42, use `std::f64::EPSILON` constant instead.
+    // let error = std::f64::EPSILON;
+    if (y - x).abs() > error { 
         println!("Success!");
     }
 }
