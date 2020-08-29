@@ -1,11 +1,9 @@
 // variables2.rs
 // Make me compile! Execute the command `rustlings hint variables2` if you want a hint :)
 
-// I AM NOT DONE
-
 fn main() {
     let x = "abc";
-    let x:i32 = match x.parse() {
+    let x: i32 = match x.parse() {
         Ok(num) => num,
         Err(_) => -1,
     };
