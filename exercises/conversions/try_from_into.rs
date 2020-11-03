@@ -11,8 +11,6 @@ struct Color {
     blue: u8,
 }
 
-// I AM NOT DONE
-
 // Your task is to complete this implementation
 // and return an Ok result of inner type Color.
 // You need create implementation for a tuple of three integer,
@@ -23,9 +21,24 @@ struct Color {
 // Also note, that chunk of correct rgb color must be integer in range 0..=255.
 
 // Tuple implementation
+
+fn valid(num: i16) -> bool {
+    num >= 0 && num <= 255
+}
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = String;
     fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let (r, g, b) = tuple;
+        if (!valid(r) || !valid(g) || !valid(b)) {
+            Err(String::from("unvalid value"))
+        } else {
+            Ok(Color {
+                red: r as u8,
+                green: g as u8,
+                blue: b as u8,
+            })
+        }
+
     }
 }
 
@@ -33,6 +46,16 @@ impl TryFrom<(i16, i16, i16)> for Color {
 impl TryFrom<[i16; 3]> for Color {
     type Error = String;
     fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let [r, g, b] = arr;
+        if (!valid(r) || !valid(g) || !valid(b)) {
+            Err(String::from("unvalid value"))
+        } else {
+            Ok(Color {
+                red: r as u8,
+                green: g as u8,
+                blue: b as u8,
+            })
+        }
     }
 }
 
@@ -40,6 +63,19 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = String;
     fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if let [r, g, b] = *slice {
+            if (!valid(r) || !valid(g) || !valid(b)) {
+                Err(String::from("unvalid value"))
+            } else {
+                Ok(Color {
+                    red: r as u8,
+                    green: g as u8,
+                    blue: b as u8,
+                })
+            }
+        } else {
+            Err(String::from("unvalid value"))
+        }
     }
 }
 
